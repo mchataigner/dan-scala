@@ -3,35 +3,31 @@ package part1_1
 import support.HandsOnSuite
 
 /**
-*  Passons aux cases classes...
+*  Case classes
 *
-*  En Scala on peut définir des classes un peu particulières avec le mot-clé 'case', et on les
-*  appelle des case classes.
+*  You define a case class by adding the `case`keyword.
 *
-*  Grâce au mot-clé 'case' devant votre classe, le compilateur va apporter
-*  les fonctionnalités suivantes :
+*  Case classes are regular classes which export their constructor parameters
+*  and which provide a recursive decomposition mechanism via pattern matching.
 *
-*     - le constructeur de la classe est rendu implicite
-*        => pas besoin de mettre un 'new 'lors de la création d'une nouvelle instance
-*     - les implémentations "naturelles" des méthodes equals, toString, hashcode sont rajoutées
-*     - les getters deviennent implicites
-*     - par défaut, les arguments passés en paramètres de classe sont des 'val' public
-*     - ajout d'une méthode copy, pour copier un élément
+*  To construct an instance of case class, there is no need to use the `new` keyword.
 *
-*  Enfin, en plus de rendre le code plus concis, l'un des intérêts des cases classes est son
-*  utilisation lors du Pattern Matching (notion que l'on verra plus tard).
+*  All case classes automatically define equals, toString, hashcode methods.
+*  They also define a copy method.
+*
+*  Case classes are useful to define algebraic datatypes.
 */
 class e2_case_classes extends HandsOnSuite {
   /**
-  * Création d'une instance d'une case class
+  * Instantiating a case class
   */
-  exercice("C'est facile de créer une case classe !!") {
-    case class MonChien(nom: String, race: String) // par défaut les paramètres sont des 'val'
+  exercice("It's easy to instantiate a case class") {
+    case class MyDog(name: String, breed: String) // by default parameters are values
 
-    val d1 = MonChien("Scooby", "Doberman")
-    val d2 = MonChien("Rex", "Custom")
-    val d3 = new MonChien("Scooby", "Doberman") // Cela marche aussi avec new, mais on peut s'en passer !
-    val d4 = MonChien.apply("Rex", "Custom") // utilisation de la méthode apply
+    val d1 = MyDog("Scooby", "Doberman")
+    val d2 = MyDog("Rex", "Custom")
+    val d3 = new MyDog("Scooby", "Doberman") // You can also instantiate using `new` but you don't have to.
+    val d4 = MyDog.apply("Rex", "Custom") // Actually you can instantiate using the companion object apply method
 
     (d1 == d3) should be(__)
     (d1 == d2) should be(__)
@@ -40,33 +36,33 @@ class e2_case_classes extends HandsOnSuite {
   }
 
   /**
-  * Les égalités
+  * Equality
   */
-  exercice("Les case classes ont une méthode equals qui 'marche'") {
-    case class Personne(prenom: String, nom: String)
+  exercice("Case classes define Equality") {
+    case class Person(firstname: String, lastname: String)
 
-    val p1 = new Personne("Martin", "Odersky")
-    val p2 = new Personne("Emmanuel" , "Bernard")
-    val p3 = new Personne("Martin", "Odersky")
+    val p1 = new Person("Martin", "Odersky")
+    val p2 = new Person("Emmanuel" , "Bernard")
+    val p3 = new Person("Martin", "Odersky")
 
-    // en fait, == en Scala est un appel à .equals de Java
+    // actually, == calls the .equals method
     (p1 == p2) should be(__)
     (p1 == p3) should be(__)
 
-    // eq en Scala correspond à l'égalité par référence, c'est à dire le '==' de Java
+    // The eq method checks reference equality (like '==' in Java)
     (p1 eq p2) should be(__)
     (p1 eq p3) should be(__)
   }
 
   /**
-  * La méthode hashcode
+  * Hashcode.
   */
-  exercice("Les case classes ont une méthode hascode qui marche (de base)") {
-    case class Personne(prenom: String, nom: String)
+  exercice("Case classes define an hash function") {
+    case class Person(prenom: String, nom: String)
 
-    val p1 = new Personne("Iron", "Man")
-    val p2 = new Personne("Super", "Man")
-    val p3 = new Personne("Iron", "Man")
+    val p1 = new Person("Iron", "Man")
+    val p2 = new Person("Super", "Man")
+    val p3 = new Person("Iron", "Man")
 
     (p1.hashCode == p2.hashCode) should be(__)
     (p1.hashCode == p3.hashCode) should be(__)
@@ -74,68 +70,67 @@ class e2_case_classes extends HandsOnSuite {
 
 
   /**
-  * Les accesseurs
+  * Accessors
   */
-  exercice("Les cases classes définissent automatiquement les accesseurs") {
-    case class MonChien(nom: String, race: String)
+  exercice("Case class define Accessors") {
+    case class MyDog(name: String, breed: String)
 
-    val d1 = MonChien("Scooby", "Doberman")
-    d1.nom should be(__)
-    d1.race should be(__)
+    val d1 = MyDog("Scooby", "Doberman")
+    d1.name should be(__)
+    d1.breed should be(__)
 
-    // Que se passe-t-il ?
-    //d1.nom = "Scooby Doo"
-    // Indice : la réponse se trouve dans le petit pâté du début
+    // What will happen ?
+    //d1.name = "Scooby Doo"
   }
 
   /**
-   * les cases classes peuvent avoir des propriétés mutables, mais on n'a pas envie de vous montrer ça ;)
+   * Case classes are usually immutable, so you have to copy them
    */
-  exercice("On peut modifier les cases classes par copie") {
-    case class MonChien(nom: String, race: String)
+  exercice("Update a value by copying it") {
+    case class MyDog(name: String, breed: String)
 
-    val d1 = MonChien("Scooby", "Doberman")
+    val d1 = MyDog("Scooby", "Doberman")
 
-    val d2 = d1.copy(nom = "Scooby Doo") // copie de la classe, mais avec le nom qui change
+    val d2 = d1.copy(name = "Scooby Doo") // copy the value with a new name
 
-    d1.nom should be(__) // original est intact (immutabilité)
-    d1.race should be(__)
+    d1.name should be(__) // the original instance has not been touched
+    d1.breed should be(__)
 
-    d2.nom should be(__)
-    d2.race should be(__) // les autres propriétés sont copiées de l'original
+    d2.name should be(__)
+    d2.breed should be(__) // other property are automatically copied from the original instance
   }
 
   /**
-  * les cases classes peuvent avoir des paramètres nommés et des paramètres par défaut
+  * Case class constructors, like any other methods, can define named parameters and default values
   */
-  exercice("les cases classes ont des paramètres par défaut et des paramètres nommés") {
-    case class Personne(prenom: String, nom: String, age: Int = 0, tel: String = "")
+  exercice("default and named parameters") {
+    case class Person(firstname: String, lastname: String, age: Int = 0, phone: String = "")
 
-    val p1 = Personne("Sherlock", "Holmes", 23, "06-XX-XX-XX-XX")
+    val p1 = Person("Sherlock", "Holmes", 23, "06-XX-XX-XX-XX")
 
-    // sans age ni tel
-    val p2 = Personne("Doctor", "Watson")
+    // omitting some parameters
+    val p2 = Person("Doctor", "Watson")
 
-    // l'ordre des paramètres peut changer, et il n'y a toujours pas l'âge
-    val p3 = Personne(nom = "Professor", prenom = "Moriarty", tel = "01-XX-XX-XX-XX")
+    // parameters order is not important if you use named parameters
+    val p3 = Person(lastname = "Professor", firstname = "Moriarty", phone = "01-XX-XX-XX-XX")
 
-    // une copie avec des paramètres nommés
+    // copy using named parameters
     val p4 = p3.copy(age = 23)
 
-    p1.prenom should be("Sherlock")
-    p1.nom should be("Holmes")
+    p1.firstname should be("Sherlock")
+    p1.lastname should be("Holmes")
     p1.age should be(23)
-    p1.tel should be(__)
+    p1.phone should be(__)
 
-    p2.prenom should be("Doctor")
-    p2.nom should be(__)
+    p2.firstname should be("Doctor")
+    p2.lastname should be(__)
     p2.age should be(0)
-    p2.tel should be(__)
+    p2.phone should be(__)
 
-    p3.prenom should be(__)
-    p3.nom should be("Professor")
+    p3.firstname should be(__)
+    p3.lastname should be("Professor")
     p3.age should be(0)
-    p3.tel should be(__)
+    p3.phone should be(__)
 
     (p3 == p4) should be(__)
   }

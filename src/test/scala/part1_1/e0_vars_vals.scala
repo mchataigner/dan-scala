@@ -9,21 +9,22 @@ import support.HandsOnSuite
 */
 
 /**
-*  Les val et var sont des mots-clé utilisés en Scala pour déclarer des champs.
-*  On peut rajouter le mot-clé 'private' devant pour définir des champs privés.
-*  Si rien n'est spécifié, on est par défaut en 'public' en Scala.
+* val & var are keywords used to declare variables and values.
+*   - var : allow to declare a variable (you can reassign it later to a value of the same type)
+*   - val : allow to declare a value (immutable, you can't reassign another value to it)
 *
-*     - var : permet de déclarer une variable mutable (=que l'on pourra par la suite modifier si on le veut)
+* Type is added as an optional "Tag". You can omit it and later the compiler infer it, or tag the
+* variable/value with an explicit type.
 *
-*     - val : permet de déclarer une variable immuable (=que l'on ne pourra plus modifier une fois initialisée)
+* def is the keyword to define a function (or a method but we will discuss the difference later)
 */
 class e0_vars_vals extends HandsOnSuite {
 
-  exercice("Les vars peuvent être réaffectées") {
-    var a = 5
+  exercice("You can reassign variables") {
+    var a: Int = 5
     anchor(a)
     a should be(__)
-    
+
     anchor(a)
 
     a = 7
@@ -33,16 +34,42 @@ class e0_vars_vals extends HandsOnSuite {
     a should be(__)
   }
 
-  exercice("Par contre les vals sont immuables (équivalent de final Java), elles ne peuvent pas être réaffectées") {
-    val a = 5
+  exercice("Values are immutables (like using final in Java)") {
+    val a: Int = 5
 
     a should be(__)
 
     /*
-    *  Question supplémentaire :
+    *  Questions:
     */
-    // Que se passe-t-il lorsque l'on ajoute ces lignes ?
+    // What happen if you add these lines?
     // a = 7
     // a should be (7)
+  }
+
+  exercice("Let's define a function") {
+    def add(a: Int, b: Int): Int = {
+      return a + b
+    }
+
+    add(5, 7) should be(__)
+  }
+
+  exercice("Note that the return keyword is generally not used") {
+    def add(a: Int, b: Int): Int = a + b
+
+    add(5, 7) should be(__)
+  }
+
+  exercice("It's because scala evaluate the whole expression as return value") {
+    val simpleExpression = 3 + 6
+    val advancedExpression = {
+      val x = 2
+      val y = 3
+      x * y
+    }
+
+    simpleExpression should be(__)
+    advancedExpression should be(__)
   }
 }
