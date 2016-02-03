@@ -3,8 +3,8 @@ package part1_1
 import support.HandsOnSuite
 
 /**
-* You define a class in Scala by using the `class`keyword.
-* A class contain fields and methods (by default everything is public).
+* You define a class in Scala by using the `class` keyword.
+* Like in Java, a class contain fields and methods (by default everything is public).
 */
 
   /**
@@ -22,8 +22,13 @@ import support.HandsOnSuite
   *       public String getName() {
   *         return this.name;
   *       }
+  *
   *       public void setName(String name) {
   *         this.name = name;
+  *       }
+  *
+  *       public String sayHello() {
+  *         return "Hello " + this.name;
   *       }
   *     }
   */
@@ -33,13 +38,16 @@ import support.HandsOnSuite
   *
   *     class User(var name: String) {
   *       println(s"User $name created")
+  *
+  *       def sayHello = s"Hello $name"
   *     }
   */
 
 class e1_classes extends HandsOnSuite {
 
-  // '{}' block is not required !
+  // The '{}' block is not required if empty
   class ClassWithValParameter(val name: String)
+
   /**
   * For a val parameter, no setter is generated
   */
@@ -49,6 +57,7 @@ class e1_classes extends HandsOnSuite {
   }
 
   class ClassWithVarParameter(var description: String)
+
   /**
   * For a var parameter, both a getter and a setter are generated
   */
@@ -59,7 +68,6 @@ class e1_classes extends HandsOnSuite {
     aClass.description = "new description"
     aClass.description should be(__)
   }
-
 
   /**
   * You can also define a private field

@@ -12,8 +12,7 @@ import support.HandsOnSuite
 *
 *  To construct an instance of case class, there is no need to use the `new` keyword.
 *
-*  All case classes automatically define equals, toString, hashcode methods.
-*  They also define a copy method.
+*  All case classes automatically define equals, toString, hashcode and a copy method.
 *
 *  Case classes are useful to define algebraic datatypes.
 */

@@ -13,7 +13,7 @@ import support.HandsOnSuite
 *   - var : allow to declare a variable (you can reassign it later to a value of the same type)
 *   - val : allow to declare a value (immutable, you can't reassign another value to it)
 *
-* Type is added as an optional "Tag". You can omit it and later the compiler infer it, or tag the
+* Type is added as an optional "Tag". You can omit it and let the compiler infer it, or tag the
 * variable/value with an explicit type.
 *
 * def is the keyword to define a function (or a method but we will discuss the difference later)
@@ -61,7 +61,7 @@ class e0_vars_vals extends HandsOnSuite {
     add(5, 7) should be(__)
   }
 
-  exercice("It's because scala evaluate the whole expression as return value") {
+  exercice("It's because scala evaluates the whole expression as return value") {
     val simpleExpression = 3 + 6
     val advancedExpression = {
       val x = 2
