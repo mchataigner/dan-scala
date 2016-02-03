@@ -4,70 +4,58 @@ import support.HandsOnSuite
 
 
 /**
-*   Comme dans les autres langages, une map de type Map[Key, Value] est une structure
-*   de donnée qui à une clé de type Key associe une valeur de type Value.
-*   Les clés ne sont pas obligatoirement du même type.
+*   As other languages, a map of type Map[Key, Value] is a data structure which associates a key of type Key
+*   to a value of type Value.
 *
-*   Puis aux MAP : http://www.scala-lang.org/api/current/index.html#scala.collection.concurrent.Map
+*   http://www.scala-lang.org/api/current/index.html#scala.collection.concurrent.Map
 */
 
 class e5_maps extends HandsOnSuite {
 
-  /**
-  * Création toute bête d’une map et première opérations
-  */
-  exercice("C’est facile de créer une map !") {
+  exercice("It's easy to create a map!") {
     val myMap = Map("PA" -> "Paris", "BE" -> "Besançon", "BL" -> "Belfort")
     myMap.size should be(__)
-    //la tête
     myMap.head should be(__)
-    // il n’y a pas de notion d’ordre dans une map
+    // There is no order in a map
     val myMapBis = Map("BE" -> "Besançon", "BL" -> "Belfort", "PA" -> "Paris")
     myMap.equals(myMapBis) should be(__)
-    // impact des 'doublons'
+    // impact of duplicated keys
     val myOtherMap = Map("PA" -> "Paris", "BE" -> "Besançon", "PA" -> "Palo Alto")
     myOtherMap.size should be(__)
     myOtherMap("PA") should be(__)
   }
 
   /**
-  * L’addition de maps se fait assez naturellement et facilement avec +
+  * Map addition is done via `+` operator
   */
-  exercice("Addition de map") {
+  exercice("Map addition") {
     val myMap = Map("PA" -> "Paris", "BE" -> "Besançon", "NA" -> "Nantes")
-    // ajout d’un élément
+    // Adding one element
     val aNewMap = myMap + ("BL" -> "Belfort")
 
-    myMap.contains("BL") should be (__) // les maps sont immuables par défaut
+    myMap.contains("BL") should be (__) // Maps are immutable
     aNewMap.contains("BL") should be(__)
   }
 
   /**
-  * Les types de clé
+  * Some operations on maps
   */
-  exercice("On peut mixer les types de clé") {
-    val myMap = Map("Ann Arbor" -> "MI", 49931 -> "MI")
-    myMap("Ann Arbor") should be(__)
-    myMap(49931) should be(__)
-  }
-
-  /**
-  * Quelques opérations sur les maps
-  */
-  exercice("On peut accéder/supprimer les élément d’une map") {
+  exercice("Access/Delete elems in a Map") {
     val myMap = Map("PA" -> "Paris", "BE" -> "Besançon", "NA" -> "Nantes", "BL" -> "Belfort")
 
-    // suppression d’un élément
+    // removing a key
     val aNewMap = myMap - "NA"
     aNewMap.contains("NA") should be(__)
-    // suppressions multiples
+    // removing multiple keys
     val aNewOtherMap = myMap -- List("BE", "BL")
     aNewOtherMap.contains("BE") should be(__)
     aNewOtherMap.contains("BL") should be(__)
-    // une exception est lancée dans le cas où l’élément n’est pas présent dans la map
+    // An exception is raised when a key is absent
     intercept[NoSuchElementException] {
       aNewOtherMap("BL") should be("Belfort")
     }
+    val maybeCity = aNewOtherMap.get("BL")
+    maybeCity should be (__)
   }
 
 }

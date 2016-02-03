@@ -31,11 +31,11 @@ class first_step extends HandsOn {
 
 class next_steps extends HandsOn {
   override def nestedSuites = List(
-    new e4_listes,
+    new e4_lists,
     new e5_maps,
     new e6_sets,
     new e7_option,
-    new e8_fonctions_de_plus_haut_niveau,
-    new e9_extracteurs_et_patterns
+    new e8_higher_order_functions,
+    new e9_extractors_and_pattern_matching
   )
 }
