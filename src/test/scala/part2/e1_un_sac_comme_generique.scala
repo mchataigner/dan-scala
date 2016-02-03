@@ -1,4 +1,4 @@
-package we_need_to_go_deeper
+package part2
 
 import support.HandsOnSuite
 

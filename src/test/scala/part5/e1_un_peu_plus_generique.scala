@@ -1,4 +1,4 @@
-package un_sac_avec_des_items
+package part6
 
 import support.HandsOnSuite
 

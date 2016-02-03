@@ -1,13 +1,14 @@
-import premiers_pas._
-import pas_suivant._
-import we_need_to_go_deeper._
-import cons_et_nil._
-import bonus_event_sourcing._
-import type_classes._
-import un_sac_avec_des_items._
+//import com.google.common.reflect.ClassPath
+import part1_1._
+import part1_2._
+import part2._
+import part3._
+import part4._
+import part5._
+import part6._
 
 import org.scalatest._
-import support.CustomStopper
+import support.{HandsOnSuite, CustomStopper}
 
 class HandsOn extends Suite {
   override def run(testName: Option[String], reporter: Reporter, stopper: Stopper, filter: Filter,

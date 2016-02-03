@@ -1,4 +1,4 @@
-package premiers_pas
+package part1_1
 
 import support.HandsOnSuite
 

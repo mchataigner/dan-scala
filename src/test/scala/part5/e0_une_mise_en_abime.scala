@@ -1,27 +1,27 @@
-package we_need_to_go_deeper
+package part6
 
 import support.HandsOnSuite
 import util.Random
 import scala.collection
 
 /*
-*   Maintenant que vous êtes un peu plus familier avec la syntaxe et que vous avez vu quelques
-*   points clé de Scala, passons aux choses sérieuses avec ce premier exo...
+*   Maintenant que vous êtes un peu plus familier avec les Functor,
+*   nous allons voir ce qu'il se passe si on a plusieurs champs lors d'un map ou flatMap
 *
-*   Il faut implémenter les parties avec des ???
+*   Il faut toujours implémenter les parties avec des ???
 *   mais avant cela il faut compléter les __ des tests en bas !
 *
 */
-class e0_une_histoire_de_sacs /* ou un sac de sac */ extends HandsOnSuite {
+class e0_une_mise_en_abime /* ou un sac de sac */ extends HandsOnSuite {
 
-  case class Sac(contenu:Int) {
+  case class Sac(valeur:Int, items:Set[String] = Set("un pc")) {
 
     /**
      * Certains appellent cette API : Functor , un mélange de terminator et de fonction.
      * Ces gens là ont en général une barbe et font un peu de théorie de catégorie.
      *
      *
-     * @param fonction la fonction a appliquer à contenu
+     * @param fonction la fonction a appliquer à valeur
      * @return un Sac
      */
     def map(fonction:Int => Int):Sac = ???
@@ -46,22 +46,25 @@ class e0_une_histoire_de_sacs /* ou un sac de sac */ extends HandsOnSuite {
      *
      */
     def flatMap(fonction:Int => Sac):Sac = {
-      ???
+      val res:Sac = ???
+      res.copy(items = ???)
     }
   }
 
 
   exercice("Je peux créer mon sac avec un seul entier, et faire des choses avec mon sac") {
 
-    val monPetitSacDeZero = Sac(0)
+    val monPetitSacDeZero = Sac(0, Set("un portable") )
 
-    monPetitSacDeZero.contenu should be(0)
+    monPetitSacDeZero.valeur should be(0)
 
     monPetitSacDeZero.copy(1) should be(__)
 
-    def incrémenteUnSac(sac:Sac):Sac = sac.copy(sac.contenu + 1)
+    def incrémenteUnSac(sac:Sac):Sac = sac.copy(sac.valeur + 1)
 
-    incrémenteUnSac(monPetitSacDeZero).contenu should be(__)
+    incrémenteUnSac(monPetitSacDeZero).valeur should be(__)
+
+    incrémenteUnSac(monPetitSacDeZero).items contains "un portable" should be(__)
 
   }
 
@@ -77,9 +80,10 @@ class e0_une_histoire_de_sacs /* ou un sac de sac */ extends HandsOnSuite {
 
     incrémente(0) should be(1)
 
-    val monPetitSacDeZero = Sac(0)
+    val monPetitSacDeZero = Sac(0, Set("un portable"))
 
-    monPetitSacDeZero.map(incrémente).contenu should be(1)
+    monPetitSacDeZero.map(incrémente).valeur should be(1)
+    monPetitSacDeZero.map(incrémente).items should contain("un portable")
   }
 
   exercice("je peux appliquer une expression en for sur mon sac") {
@@ -87,21 +91,19 @@ class e0_une_histoire_de_sacs /* ou un sac de sac */ extends HandsOnSuite {
      * Ce test se base sur la fonction map implémentée précedement
      */
 
-    val monPetitSacDeZero = Sac(0)
+    val monPetitSacDeZero = Sac(0, Set("un portable") )
 
-  
-
-    val plus:Int = 12345
-
-    val monPetitSacDeUn  = (for (i <- monPetitSacDeZero) yield (i + plus))
+    // ici on a rajouté .asInstanceOf[Int]
+    // pour des soucis de compilation, il faudra donc remplacer «__.asInstanceOf[Int]»
+    val monPetitSacDeUn  = (for (i <- monPetitSacDeZero) yield (i + __.asInstanceOf[Int]))
 
     /*
      * Le compilateur scala traduit cette boucle for par :
      *
-     * monPetitSacDeZero.map(i => {plus + i})
+     * monPetitSacDeZero.map(i => i + __.asInstanceOf[Int])
      */
 
-    monPetitSacDeUn.contenu should be(__)
+    monPetitSacDeUn.valeur should be(1)
 
   }
 
@@ -112,8 +114,8 @@ class e0_une_histoire_de_sacs /* ou un sac de sac */ extends HandsOnSuite {
      */
 
 
-    val monPetitSacDeDeux = Sac(2)
-    val monGrosSacDeCent = Sac(100)
+    val monPetitSacDeDeux = Sac(2,Set("un portable"))
+    val monGrosSacDeCent = Sac(100, Set("un pc"))
 
     val l_union_de_mes_sac = for (p <- monPetitSacDeDeux; g <- monGrosSacDeCent) yield( p * g)
 
@@ -123,7 +125,9 @@ class e0_une_histoire_de_sacs /* ou un sac de sac */ extends HandsOnSuite {
      * monPetitSacDeDeux.flatMap{ p => monGrosSacDeCent.map(g => p *g))
      */
 
-    l_union_de_mes_sac.contenu should be(200)
+    l_union_de_mes_sac.valeur should be(200)
+
+    l_union_de_mes_sac.items should be(Set("un portable","un pc"))
   }
 
 }

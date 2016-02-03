@@ -1,4 +1,4 @@
-package bonus_event_sourcing
+package part4
 
 import support.HandsOnSuite
 
@@ -32,7 +32,7 @@ package events {
 }
 
 package model {
-  import bonus_event_sourcing.events._
+  import part4.events._
 
   case class Post(id: PostId, content: PostContent)  {
       def versions:List[PostContent] = ???
@@ -55,11 +55,11 @@ package model {
   }
 }
 
-import bonus_event_sourcing.model.Posts
-import bonus_event_sourcing.events._
-import bonus_event_sourcing.events.PostEdited
-import bonus_event_sourcing.events.PostContent
-import bonus_event_sourcing.events.PostAdded
+import part4.model.Posts
+import part4.events._
+import part4.events.PostEdited
+import part4.events.PostContent
+import part4.events.PostAdded
 
 class testEventSourcing extends HandsOnSuite {
 

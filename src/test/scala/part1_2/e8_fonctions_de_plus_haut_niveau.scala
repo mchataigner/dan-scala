@@ -1,4 +1,4 @@
-package pas_suivant
+package part1_2
 
 import support.HandsOnSuite
 

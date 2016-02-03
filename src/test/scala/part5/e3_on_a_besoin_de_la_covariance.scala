@@ -1,8 +1,8 @@
-package we_need_to_go_deeper
+package part6
 
 import support.HandsOnSuite
 
-class e3_un_sac_covariant extends HandsOnSuite {
+class e3_on_a_besoin_de_la_covariance extends HandsOnSuite {
 
   /**
    *
@@ -23,23 +23,27 @@ class e3_un_sac_covariant extends HandsOnSuite {
    */
   sealed trait Sac[+A] {
 
+    def items:Set[String]
+
     def map[B](fonction:A => B):Sac[B]
 
     def flatMap[B](fonction:A => Sac[B]):Sac[B]
 
     def filter(fonction:A => Boolean):Sac[A]
 
-    def contenuOuSinon[B >: A](replacement:B):B
+    def valeurOuSinon[B >: A](replacement:B):B
 
     def isEmpty:Boolean
+
+    def addItems(items:Set[String]):Sac[A]
 
   }
 
   object Sac {
-    def apply[A](contenu:A):Sac[A] = SacPlein(contenu)
+    def apply[A](valeur:A, items:Set[String] = Set.empty):Sac[A] = SacPlein(valeur, items)
   }
 
-  case object SacVide extends Sac[Nothing] {
+  case class SacVide(items:Set[String] = Set.empty) extends Sac[Nothing] {
 
     type A = Nothing
 
@@ -49,13 +53,15 @@ class e3_un_sac_covariant extends HandsOnSuite {
 
     override def filter(fonction:A => Boolean):Sac[A]  = ???
 
-    override def contenuOuSinon[B >: A](replacement:B):B = replacement
+    override def valeurOuSinon[B >: A](replacement:B):B = replacement
 
     override val isEmpty: Boolean = true
 
+    def addItems(items:Set[String]):Sac[A] = ???
+
   }
 
-  case class SacPlein[A](contenu:A) extends Sac[A] {
+  case class SacPlein[A](valeur:A , items:Set[String] = Set.empty) extends Sac[A] {
 
     override def map[B](fonction:A => B):Sac[B]  = ???
 
@@ -63,18 +69,33 @@ class e3_un_sac_covariant extends HandsOnSuite {
 
     override def filter(fonction:A => Boolean):Sac[A]  = ???
 
-    override def contenuOuSinon[B >: A](replacement:B):B = contenu
+    override def valeurOuSinon[B >: A](replacement:B):B = valeur
 
     override val isEmpty: Boolean = false
+
+    def addItems(items:Set[String]):Sac[A] = ???
+
+  }
+
+
+  exercice("on peut ajouter des items au sac") {
+
+    val s0 = Sac(0)
+
+    s0.addItems(Set("un portable")).items should be(Set("un portable"))
+
+    val v0 = SacVide()
+
+    v0.addItems(Set("un portable")).items should be(Set("un portable"))
 
   }
 
 
   exercice("Un peu comme avant, l'application de fonction dans le conteneur") {
-    val petitSacDeZero = Sac(0)
+    val petitSacDeZero = Sac(0,Set("un portable"))
 
     petitSacDeZero.map(x => x + 1) match {
-      case SacPlein(contenu)  =>  contenu should be(1)
+      case SacPlein(valeur, _ )  =>  valeur should be(1)
 
       case _ => fail("cela ne doit pas être un sac vide")
     }
@@ -86,22 +107,23 @@ class e3_un_sac_covariant extends HandsOnSuite {
 
   exercice("La combinaison de Sac") {
 
-    val petitSacDeZero = Sac(0)
+    val petitSacDeZero = Sac(0,Set("un portable"))
 
-    val grandSacDeA = Sac("A")
+    val grandSacDeA = Sac("A", Set("un pc"))
 
     val combinaison = for (p <- petitSacDeZero; g <- grandSacDeA) yield { p.toString + g}
 
     combinaison match {
-      case SacPlein(contenu) => {
-        contenu should be("0A")
+      case SacPlein(valeur, items) => {
+        valeur should be("0A")
+        combinaison.items should be(Set("un portable", "un pc"))
       }
       case _ => fail("cela ne doit pas être un sac vide")
     }
   }
 
   exercice("Le filtrage") {
-    val petitSacDeZero = Sac(0)
+    val petitSacDeZero = Sac(0,Set("un portable"))
 
     assert(petitSacDeZero.filter(x => x > 1).isEmpty)
   }

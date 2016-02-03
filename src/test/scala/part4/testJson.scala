@@ -1,4 +1,4 @@
-package type_classes
+package part5
 
 import support.HandsOnSuite
 
