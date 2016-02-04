@@ -15,12 +15,12 @@ class HandsOn extends Suite {
 
 class HandsOnScala extends HandsOn {
   override def nestedSuites = List(
-    new first_step,
-    new next_steps
+    new part1_1,
+    new part1_2
   )
 }
 
-class first_step extends HandsOn {
+class part1_1 extends HandsOn {
   override def nestedSuites = List(
     new e0_vars_vals,
     new e1_classes,
@@ -29,7 +29,7 @@ class first_step extends HandsOn {
   )
 }
 
-class next_steps extends HandsOn {
+class part1_2 extends HandsOn {
   override def nestedSuites = List(
     new e4_lists,
     new e5_maps,
