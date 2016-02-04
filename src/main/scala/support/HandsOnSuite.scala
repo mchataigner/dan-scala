@@ -95,10 +95,10 @@ trait HandsOnSuite extends MyFunSuite with ShouldMatchers {
               sendFail(failure, e.suiteName, e.testName)
       //pour les __ => avec context
             case Some(pending: MyTestPendingException) =>
-              sendPending(pending, e.suiteName, e.testName, Some("Vous devez remplacer les __ par les valeurs correctes"))
+              sendPending(pending, e.suiteName, e.testName, Some("You have to replace __ by correct values"))
       //pour les ??? => sans context
             case Some(pending: MyNotImplException) =>
-              sendPending(pending, e.suiteName, e.testName, Some("Vous devez remplacer les ??? par les implémentations correctes"))
+              sendPending(pending, e.suiteName, e.testName, Some("You have to replace ??? by correct implementations"))
       //pour les autres erreurs => avec stacktrace
             case Some(failure: MyException) =>
               sendFail(failure, e.suiteName, e.testName)
