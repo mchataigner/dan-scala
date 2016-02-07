@@ -3,25 +3,22 @@ package recorder
 
 import reflect.macros.Context
 
-class RecorderMacro[C <: Context](val context: C) {
-  import context.universe._
+class RecorderMacro[C <: Context](val c: C) {
+  import c.universe._
 
-  def apply(testName: context.Expr[String])
-           (testFun: context.Expr[Unit])
-           (suite: context.Expr[MyFunSuite], anchorRecorder:context.Expr[AnchorRecorder]): context.Expr[Unit] = {
+  def apply(testName: c.Expr[String])
+           (testFun: c.Expr[Unit])
+           (suite: c.Expr[MyFunSuite], anchorRecorder:c.Expr[AnchorRecorder]): c.Expr[Unit] = {
 
     val texts = getTexts(testFun.tree)
+    val content = texts._1
+    val start = texts._2
+    val end = texts._3
 
-    reify {
-        val testExpressionLineStart:Int = context.literal(texts._2).splice
-
-        val testExpressionLineEnd:Int  = context.literal(texts._3).splice
-
-        MyFunSuite.testBody(testName.splice, suite.splice, anchorRecorder.splice)(testFun.splice)(new TestContext(
-          context.literal(texts._1).splice, testExpressionLineStart, testExpressionLineEnd))
-    }
+    c.Expr(q"""recorder.MyFunSuite.testBody($testName, $suite, $anchorRecorder)($testFun)(new recorder.TestContext(
+      $content, $start, $end))
+     """)
   }
-
 
   def getTexts(recording:Tree):(String, Int,Int) = {
     def lines(rec : Tree):(Int,Int)  = {
@@ -29,48 +26,27 @@ class RecorderMacro[C <: Context](val context: C) {
         case Block(xs, y) => (rec.pos.line, y.pos.line)
         case _ => (rec.pos.line, rec.pos.line)
       }
-
     }
     val (lstart, lend) = lines(recording)
-
     val source = recording.pos.source
-
-
     val sourceContent:String =  source.content.mkString
     (sourceContent, lstart, lend)
-
   }
-
 }
 
 
 object RecorderMacro {
-
-
-
-  def apply(context: Context)(testName: context.Expr[String])
-           (testFun: context.Expr[Unit])
-           (suite: context.Expr[MyFunSuite], anchorRecorder: context.Expr[AnchorRecorder]): context.Expr[Unit] = {
-
-    new RecorderMacro[context.type](context).apply(testName)(testFun)(suite, anchorRecorder)
+  def apply(c: Context)(testName: c.Expr[String])
+           (testFun: c.Expr[Unit])
+           (suite: c.Expr[MyFunSuite], anchorRecorder: c.Expr[AnchorRecorder]): c.Expr[Unit] = {
+    new RecorderMacro[c.type](c).apply(testName)(testFun)(suite, anchorRecorder)
   }
 
-
-  def anchor[T: context.WeakTypeTag](context: Context)(a : context.Expr[T]):context.Expr[Unit] = {
-    import context.universe._
-
-    val aCode = context.literal(show(a.tree))
-
-    val line = context.literal(a.tree.pos.line)
-
-    val resultExp = reify {("" + a.splice)}
-
-    context.Expr[Unit](
-      Apply(Select(Select(
-        context.prefix.tree, newTermName("anchorRecorder")), newTermName("record")), List(aCode.tree, line.tree, resultExp.tree))
-
-    )
-
-
+  def anchor[T: c.WeakTypeTag](c: Context)(a : c.Expr[T]):c.Expr[Unit] = {
+    import c.universe._
+    val aCode = q"${show(a.tree)}"
+    val line = q"${a.tree.pos.line}"
+    val resultExp = q"${a.toString()}"
+    c.Expr[Unit](q"anchorRecorder.record($aCode, $line, $resultExp)")
   }
 }
