@@ -15,9 +15,9 @@ showSuccess := false
 
 offline := true
 
-libraryDependencies += "org.scala-lang" % "scala-reflect" % "2.10.0"
+libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value
 
-libraryDependencies += "org.scala-lang" % "scala-compiler" % "2.10.0"
+libraryDependencies += "org.scala-lang" % "scala-compiler" % scalaVersion.value
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "1.9.1"
 
