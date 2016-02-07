@@ -1,17 +1,14 @@
 package support
 
 import org.scalatest._
-import org.scalatest.events._
-import org.scalatest.matchers.{ShouldMatchers, Matcher}
+import org.scalatest.matchers.Matcher
 
 import recorder._
 
 import language.experimental.macros
 
 
-
-
-trait HandsOnSuite extends MyFunSuite with ShouldMatchers {
+trait HandsOnSuite extends MyFunSuite with Matchers {
   def __ : Matcher[Any] = {
     throw new NotImplementedError("__")
   }
@@ -32,9 +29,11 @@ trait HandsOnSuite extends MyFunSuite with ShouldMatchers {
   = macro RecorderMacro.apply  */
 
 
-  protected override def runTest(testName: String, reporter: Reporter, stopper: Stopper, configMap: Map[String, Any], tracker: Tracker) {
+  protected override def runTest(testName: String, args: Args) = { // reporter: Reporter, stopper: Stopper, configMap: Map[String, Any], tracker: Tracker) {
     if (!CustomStopper.oneTestFailed) {
-      super.runTest(testName, new ReportToTheStopper(reporter), CustomStopper, configMap, tracker)
+      super.runTest(testName, args.copy(reporter = new ReportToTheStopper(args.reporter), stopper = CustomStopper)) // , CustomStopper, configMap, tracker)
+    } else {
+      SucceededStatus
     }
   }
 }

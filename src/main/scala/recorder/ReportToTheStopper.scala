@@ -16,7 +16,7 @@ class ReportToTheStopper(other: Reporter) extends Reporter {
     var i = 0
     var toto = evt.ordinal.nextNewOldPair._2
     def mess(s: String) = {
-      other(InfoProvided(evt.ordinal, s, None, None, None, Some(IndentedText(s, s, 0)), evt.payload, evt.threadName, evt.timeStamp))
+      other(InfoProvided(evt.ordinal, s, None, None, Some(IndentedText(s, s, 0)), evt.location, evt.payload, evt.threadName, evt.timeStamp))
       toto = toto.next
     }
 

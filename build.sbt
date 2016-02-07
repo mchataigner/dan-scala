@@ -1,4 +1,4 @@
-scalaVersion := "2.10.3"
+scalaVersion := "2.11.7"
 
 
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xlog-free-types", "-Xlog-free-terms")
@@ -19,7 +19,7 @@ libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value
 
 libraryDependencies += "org.scala-lang" % "scala-compiler" % scalaVersion.value
 
-libraryDependencies += "org.scalatest" %% "scalatest" % "1.9.1"
+libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.6"
 
 addCommandAlias("part1_1", "~ test-only part1_1")
 

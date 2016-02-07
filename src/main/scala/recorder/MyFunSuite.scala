@@ -1,14 +1,14 @@
 package recorder
 
-import org.scalatest.FunSuite
+import org.scalatest.FunSpec
 import org.scalatest.exceptions.TestFailedException
 
-trait MyFunSuite extends FunSuite {
+trait MyFunSuite extends FunSpec {
 
   implicit val anchorRecorder = new AnchorRecorder()
 
   def testPublic(testName: String)(testFun: => Unit) {
-   test(testName)(testFun)
+   it(testName)(testFun)
   }
 }
 

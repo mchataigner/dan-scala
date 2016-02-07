@@ -1,7 +1,7 @@
 package recorder
 
 
-import reflect.macros.Context
+import reflect.macros.blackbox.Context
 
 class RecorderMacro[C <: Context](val c: C) {
   import c.universe._

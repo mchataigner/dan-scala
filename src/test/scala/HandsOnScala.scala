@@ -4,23 +4,24 @@ import part1_2._
 import org.scalatest._
 import support.CustomStopper
 
-class HandsOn extends Suite {
-  override def run(testName: Option[String], reporter: Reporter, stopper: Stopper, filter: Filter,
-                   configMap: Map[String, Any], distributor: Option[Distributor], tracker: Tracker) {
+class HandsOn extends Spec {
+  override def run(testName: Option[String], args: Args) = {
     if(!CustomStopper.oneTestFailed)
-    super.run(testName, reporter, CustomStopper, filter, configMap, distributor, tracker)
+      super.run(testName, args.copy(stopper = CustomStopper))
+    else
+      SucceededStatus
   }
 }
 
 class HandsOnScala extends HandsOn {
-  override def nestedSuites = List(
+  override def nestedSuites = Vector(
     new part1_1,
     new part1_2
   )
 }
 
 class part1_1 extends HandsOn {
-  override def nestedSuites = List(
+  override def nestedSuites = Vector(
     new e0_vars_vals,
     new e1_classes,
     new e2_case_classes,
@@ -29,7 +30,7 @@ class part1_1 extends HandsOn {
 }
 
 class part1_2 extends HandsOn {
-  override def nestedSuites = List(
+  override def nestedSuites = Vector(
     new e4_lists,
     new e5_maps,
     new e6_sets,
