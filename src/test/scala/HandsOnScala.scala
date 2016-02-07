@@ -1,9 +1,8 @@
-//import com.google.common.reflect.ClassPath
 import part1_1._
 import part1_2._
 
 import org.scalatest._
-import support.{HandsOnSuite, CustomStopper}
+import support.CustomStopper
 
 class HandsOn extends Suite {
   override def run(testName: Option[String], reporter: Reporter, stopper: Stopper, filter: Filter,

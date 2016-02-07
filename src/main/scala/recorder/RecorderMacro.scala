@@ -2,10 +2,6 @@ package recorder
 
 
 import reflect.macros.Context
-import org.scalatest.exceptions._
-import reflect.internal.Chars
-import collection.mutable.ArrayBuffer
-import annotation.switch
 
 class RecorderMacro[C <: Context](val context: C) {
   import context.universe._
