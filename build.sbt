@@ -27,6 +27,8 @@ addCommandAlias("part1_2", "~ test-only part1_2")
 
 addCommandAlias("part2", "~ test-only part2")
 
+addCommandAlias("part3", "~ test-only part3")
+
 addCommandAlias("go", "~ test-only HandsOnScala")
 
 libraryDependencies := {

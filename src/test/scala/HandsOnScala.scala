@@ -1,6 +1,7 @@
 import part1_1._
 import part1_2._
 import part2._
+import part3._
 
 import org.scalatest._
 import support.CustomStopper
@@ -18,7 +19,8 @@ class HandsOnScala extends HandsOn {
   override def nestedSuites = Vector(
     new part1_1,
     new part1_2,
-    new part2
+    new part2,
+    new part3
   )
 }
 
@@ -46,5 +48,11 @@ class part2 extends HandsOn {
   override def nestedSuites = Vector(
     new e0_list,
     new e1_bonus_stream
+  )
+}
+
+class part3 extends HandsOn {
+  override def nestedSuites = Vector(
+    new e0_futures
   )
 }
