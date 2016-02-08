@@ -2,6 +2,7 @@ import part1_1._
 import part1_2._
 import part2._
 import part3._
+import part4._
 
 import org.scalatest._
 import support.CustomStopper
@@ -20,7 +21,8 @@ class HandsOnScala extends HandsOn {
     new part1_1,
     new part1_2,
     new part2,
-    new part3
+    new part3,
+    new part4
   )
 }
 
@@ -54,5 +56,13 @@ class part2 extends HandsOn {
 class part3 extends HandsOn {
   override def nestedSuites = Vector(
     new e0_futures
+  )
+}
+
+class part4 extends HandsOn {
+  override def nestedSuites = Vector(
+    new e0_json_writer,
+    new client.e0_json_writer_client,
+    new e1_json_reader
   )
 }
