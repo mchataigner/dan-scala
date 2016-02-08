@@ -23,7 +23,9 @@ libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.6"
 
 addCommandAlias("part1_1", "~ test-only part1_1")
 
-addCommandAlias("part1_2", "~ test-only part1_1")
+addCommandAlias("part1_2", "~ test-only part1_2")
+
+addCommandAlias("part2", "~ test-only part2")
 
 addCommandAlias("go", "~ test-only HandsOnScala")
 
