@@ -46,7 +46,7 @@ object RecorderMacro {
     import c.universe._
     val aCode = q"${show(a.tree)}"
     val line = q"${a.tree.pos.line}"
-    val resultExp = q"${a.toString()}"
+    val resultExp = q"${reify(a.splice.toString())}"
     c.Expr[Unit](q"anchorRecorder.record($aCode, $line, $resultExp)")
   }
 }
