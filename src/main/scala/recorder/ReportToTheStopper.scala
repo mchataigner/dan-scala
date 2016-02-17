@@ -28,7 +28,7 @@ class ReportToTheStopper(other: Reporter) extends Reporter {
       .append( "Test     : " + test.replace("\n","") ).append("\n")
 
     location.collect({ case f =>
-      sb.append( "fichier  : " + f.replace("\n","") ).append("\n")
+      sb.append( "File     : " + f.replace("\n","") ).append("\n")
     })
     message.collect({ case m =>
       sb.append("").append("\n")

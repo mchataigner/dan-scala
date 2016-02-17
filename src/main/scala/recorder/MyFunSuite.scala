@@ -49,10 +49,12 @@ object MyFunSuite  {
       def exceptionMessage(t: Throwable):String = Option(t.getMessage).getOrElse("")
 
       def exceptionToLocation(st: StackTraceElement): String = {
-        suitePackage + java.io.File.separator + st.getFileName + ":" + st.getLineNumber
+        "src/test/scala/" + suitePackage + java.io.File.separator + st.getFileName + ":" + st.getLineNumber
       }
 
-      def suitePackage = suite.getClass.getPackage.toString
+      def suitePackage = {
+        suite.getClass.getPackage.getName // getPackage.toString
+      }
 
       try {
         testFun
