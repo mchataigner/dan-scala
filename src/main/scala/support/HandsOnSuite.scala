@@ -37,8 +37,3 @@ trait HandsOnSuite extends MyFunSuite with Matchers {
     }
   }
 }
-
-object HandsOnSuite {
-  object partie1 extends Tag("support.partie1")
-  object partie2 extends Tag("support.partie2")
-}

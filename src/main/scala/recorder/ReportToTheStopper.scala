@@ -111,8 +111,9 @@ class ReportToTheStopper(other: Reporter) extends Reporter {
           , footerPending)
       case e: InfoProvided =>
         if(e.formatter.isDefined) other(event)
-      case _: SuiteCompleted | _: SuiteStarting | _: RunCompleted | _: RunStopped =>
+      case _: SuiteCompleted | _: SuiteStarting | _: RunCompleted | _: RunStopped | _: TestStarting | _: TestSucceeded =>
       case _ =>
+        println(event)
         other(event)
     }
   }
