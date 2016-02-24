@@ -45,8 +45,8 @@ class part1_2 extends HandsOn {
 
 class part2 extends HandsOn {
   override def nestedSuites = Vector(
+    new e2_fp,
     new e0_list,
-    new e1_bonus_stream,
-    new e2_fp
+    new e1_bonus_stream
   )
 }
