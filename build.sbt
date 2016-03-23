@@ -1,5 +1,9 @@
 scalaVersion := "2.11.7"
 
+resolvers ++= Seq(
+  Resolver.sonatypeRepo("releases"),
+  "Twitter Maven" at "https://maven.twttr.com"
+)
 
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xlog-free-types", "-Xlog-free-terms")
 
@@ -21,6 +25,8 @@ libraryDependencies += "org.scala-lang" % "scala-compiler" % scalaVersion.value
 
 libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.6"
 
+libraryDependencies += "com.twitter.finatra" %% "finatra-http" % "2.1.5"
+
 addCommandAlias("part1_1", "~ test-only part1_1")
 
 addCommandAlias("part1_2", "~ test-only part1_2")
@@ -28,6 +34,10 @@ addCommandAlias("part1_2", "~ test-only part1_2")
 addCommandAlias("part2", "~ test-only part2")
 
 addCommandAlias("go", "~ test-only HandsOnScala")
+
+addCommandAlias("server", "test:runMain stock.StockServer -http.port=:8080 -local.doc.root=./src/test/scala/part3")
+
+fork in (Test, run) := true
 
 libraryDependencies := {
   CrossVersion.partialVersion(scalaVersion.value) match {
