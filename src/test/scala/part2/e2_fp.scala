@@ -3,7 +3,7 @@ package part2
 import support.HandsOnSuite
 
 /**
- * Here are pretty simple code exercices,
+ * Here are pretty simple code exercises,
  * but try to solve them with these additional constraints:
  *
  * - do NOT use any mutable data structure (use only scala.collection._ ones)
@@ -68,7 +68,7 @@ class e2_fp extends HandsOnSuite {
   exercice("I Was Told There Would Be No Puzzles") {
 
     // You need to extract strings of a text files which
-    // have the following properties:
+    // have the two following properties:
     //
     // 1) It contains a pair of any two letters that appears at least twice in
     //    the string without overlapping, like xyxy (xy) or aabcdefgaa (aa),

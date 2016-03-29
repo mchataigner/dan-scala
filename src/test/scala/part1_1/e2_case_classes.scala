@@ -96,7 +96,7 @@ class e2_case_classes extends HandsOnSuite {
     d1.breed should be(__)
 
     d2.name should be(__)
-    d2.breed should be(__) // other property are automatically copied from the original instance
+    d2.breed should be(__) // other properties are automatically copied from the original instance
   }
 
   /**

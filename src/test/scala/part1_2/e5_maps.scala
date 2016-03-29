@@ -40,7 +40,7 @@ class e5_maps extends HandsOnSuite {
   /**
   * Some operations on maps
   */
-  exercice("Access/Delete elems in a Map") {
+  exercice("Access/Delete elements in a Map") {
     val myMap = Map("PA" -> "Paris", "BE" -> "Besançon", "NA" -> "Nantes", "BL" -> "Belfort")
 
     // removing a key

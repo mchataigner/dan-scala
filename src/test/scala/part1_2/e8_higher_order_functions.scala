@@ -15,36 +15,36 @@ import support.HandsOnSuite
 *
 *           def addition(a: Int, b: Int): Int = a + b
 *
-*     - return is not required since in Scala the last expression of a block is return by dedfault !
+*     - return is not required since in Scala the last expression of a block is return by default !
 *
 */
 class e8_higher_order_functions extends HandsOnSuite {
 
   /**
-  *   A value can reference an `anonyme` function
+  *   A value can reference an `anonymous` function
   *
-  *   Note : we can write lambd with or without {}
+  *   Note : we can write lambda with or without {}
   *
   *   val lambda = {
   *     x: Int => x + 1
   *   }
   */
-  exercice("Annonymous function as parameter") {
+  exercice("Anonymous function as parameter") {
     val lambda = (x: Int) => x + 1
     def result = List(1, 2, 3) map lambda
-    // Scala compiler do type inference, thus we can ommit return types
+    // Scala compiler do type inference, thus we can omit return types
     result should be(__)
   }
 
   /**
   * or more simply
   */
-  exercice("simplier") {
+  exercice("simpler") {
     def result = List(1, 2, 3) map ( x => x + 1 )
     result should be(__)
 
-    def eventSimplier = List(1, 2, 3) map ( _ + 1 )
-    eventSimplier should be(__)
+    def evenSimpler = List(1, 2, 3) map ( _ + 1 )
+    evenSimpler should be(__)
   }
 
 
@@ -61,7 +61,7 @@ class e8_higher_order_functions extends HandsOnSuite {
 
     addWithoutSyntaxSugar(1)(2) should be(__)
 
-    //simplier
+    //simpler
     def add(x: Int) = (y: Int) => x + y
     add(2)(3) should be(__)
 
@@ -70,9 +70,9 @@ class e8_higher_order_functions extends HandsOnSuite {
   }
 
   /**
-  * Higher order functions can take function as parameters
+  * Higher order functions can take functions as parameters
   */
-  exercice("Function taking other function in parameter. This helps function composition") {
+  exercice("Function taking another function in parameter. This helps function composition") {
     def makeUpper(xs: List[String]) = xs map {
       _.toUpperCase
     }
@@ -94,10 +94,10 @@ class e8_higher_order_functions extends HandsOnSuite {
   /**
   * currying
   */
-  exercice("""Currying is a technique transforming a function with multiple parameters into a function with one parameter""") {
+  exercice("Currying is a technique transforming a function with multiple parameters into a function with one parameter") {
     def multiply(x: Int, y: Int) = x * y
     // watchout '_'
-    // it indicates that the compiler should no apply the function but referencing it
+    // it indicates that the compiler should not apply the function but referencing it
     val multiplyCurried = (multiply _).curried
     multiply(4, 5) should be(__)
     multiplyCurried(4)(5) should be(__)
@@ -112,8 +112,9 @@ class e8_higher_order_functions extends HandsOnSuite {
     val xs = List(12, 11, 5, 20, 3, 13, 2)
     customFilter(onlyEven)(xs) should be(__)
 
-    val onlyEvenFilter = customFilter(onlyEven) _  //Watchout '_'
-    // it indicates that the compiler should no apply the function but referencing it
+    // Watch out '_'
+    // it indicates that the compiler should not apply the function but referencing it
+    val onlyEvenFilter = customFilter(onlyEven) _
     onlyEvenFilter(xs) should be(__)
   }
 }
