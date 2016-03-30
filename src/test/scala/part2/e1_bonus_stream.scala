@@ -42,7 +42,7 @@ class e1_bonus_stream extends HandsOnSuite {
         EmptyStream
       } else {
         // ':_*' allows to expand a list into var args
-        (Cons(values.head, Stream(values.tail:_*)))
+        Cons(values.head, Stream(values.tail:_*))
       }
     }
 
@@ -132,7 +132,7 @@ class e1_bonus_stream extends HandsOnSuite {
     // String <: B and A (here Int) <: B
     // The first common type between String and Int is Any, corresponding to Object in Java
 
-    // There is nothing to do for this example to actually work, the compiler does the jobs.
+    // There is nothing to do for this example to actually work, the compiler does the job.
 
   }
 

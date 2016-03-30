@@ -8,7 +8,7 @@ import scala.concurrent.duration._
 
 /**
  * Futures provide a way to reason about asynchronous and parallel
- * code execution. A Future handle a value that may not yet exist.
+ * code execution. A Future handles a value that may not yet exist.
  * And you can manipulate this value almost as another value by
  * applying function on it. All the computation are lazy and will
  * be executed when the value is actually available.
@@ -21,7 +21,7 @@ class e3_future extends HandsOnSuite {
   // We need an execution context to run our asynchronous code.
   import scala.concurrent.ExecutionContext.Implicits.global
 
-  // Here I define an helper function to declare a
+  // Here I define a helper function to declare a
   // Future value that will become available after a
   // fixed timeout. You will use it in your tests, but
   // don't look yet at how it is implemented.

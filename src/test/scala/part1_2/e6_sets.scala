@@ -3,9 +3,9 @@ package part1_2
 import support.HandsOnSuite
 
 /**
-*   Un Set est une collection qui ne contient que des éléments distincts, comme en Java.
+*   A set is a collection of unique elements.
 *
-*   Quelques liens :
+*   Some links:
 *     - http://www.scala-lang.org/api/current/index.html#scala.collection.immutable.Set
 *     - http://docs.scala-lang.org/overviews/collections/sets.html
 */
@@ -13,9 +13,9 @@ import support.HandsOnSuite
 class e6_sets extends HandsOnSuite {
 
   /**
-  * Création d'un Set
+  * Creating a Set
   */
-  exercice("Création d'un Set") {
+  exercice("Creating a Set") {
     val mySet = Set("Sud", "Est", "Ouest", "Nord")
     mySet.size should be(__)
 
@@ -24,22 +24,22 @@ class e6_sets extends HandsOnSuite {
   }
 
   /**
-  * Quelques opérations : les fonctions +, -, --  et contains
+  * Operations on Sets: operators +, -, --, method contains
   */
-  exercice("Opérations sur les Sets") {
-    // addition
+  exercice("Operations on Sets") {
+    // Addition
     val mySet = Set("Sud", "Est", "Sud")
     val aNewSet = mySet + "Nord"
 
     aNewSet.contains("Nord") should be(__)
 
-    // suppression
+    // Suppression
     val mySetBis = Set("Sud", "Est", "Ouest", "Nord")
     val aNewSetBis = mySetBis - "Nord"
-    // la méthode contains
+    // method contains
     aNewSetBis.contains("Nord") should be(__)
 
-    // suppressions multiples
+    // Multiple suppressions
     val myOtherSet = Set("Sud", "Est", "Ouest", "Nord")
     val aNewOtherSet = myOtherSet -- List("Ouest", "Nord")
 

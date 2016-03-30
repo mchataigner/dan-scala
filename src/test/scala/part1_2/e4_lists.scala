@@ -20,7 +20,7 @@ import support.HandsOnSuite
   *   x::xs represent a list with the element x followed by the list xs
   *   List is a recursive structure and element types must be the same in the whole list.
   *
-  *   Lists have usefull functions: isEmpty, filter, head, tail...
+  *   Lists have useful functions: isEmpty, filter, head, tail...
   *
   *   This can help: http://www.scala-lang.org/api/current/index.html#scala.collection.immutable.List
   */
@@ -41,7 +41,7 @@ class e4_lists extends HandsOnSuite {
   }
 
   /**
-  *   Watchout, we saw this in exo 2 on case classes !
+  *   Watch out, we saw this in exo 2 on case classes !
   */
   exercice("Eq tests reference equality on objects") {
     val a = List(1, 2, 3)
@@ -51,7 +51,7 @@ class e4_lists extends HandsOnSuite {
   }
 
   /**
-  *  Some usefull methods...
+  *  Some useful methods...
   */
   exercice("head and tail functions") {
     val a = List(1, 3, 5, 7, 9)
@@ -67,7 +67,7 @@ class e4_lists extends HandsOnSuite {
 
     // multiplies by 3 each element in the list
     // `map` function compute an operation on each element of a collection
-    // it return a copy of the calling collection by applying the function given in parameter to each elem
+    // it returns a copy of the calling collection by applying the function given in parameter to each elem
     a.map {v => v * 3} should equal(__)
 
     // keeps all multiples of 3
@@ -76,7 +76,7 @@ class e4_lists extends HandsOnSuite {
     // keeps all multiples of 5
     val c = List(1, 2, 5, 8, 9)
     val b = c.filterNot(v => v % 5==0)
-    c should equal(List(1, 2, 5, 8, 9)) // les listes sont immuables par défaut !
+    c should equal(List(1, 2, 5, 8, 9)) // Lists are immutable by default
     b should equal(__)
   }
 
@@ -85,7 +85,7 @@ class e4_lists extends HandsOnSuite {
   */
   exercice("Functions applied to lists can use `_`") {
     val a = List(1, 2, 3)
-    //ici _ * 2 veut dire i => i * 2
+    // Here '_ * 2' is the same as writing 'i => i * 2'
     a.map(_ * 2) should equal(__)
     a.filter(_ % 2 != 0) should equal(__)
   }

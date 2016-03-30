@@ -35,7 +35,7 @@ class e0_list extends HandsOnSuite {
         Nil
       } else {
         // ':_*' allows to expand a list into var args
-        (Cons(values.head, List(values.tail:_*)))
+        Cons(values.head, List(values.tail:_*))
       }
     }
   }
@@ -91,7 +91,7 @@ class e0_list extends HandsOnSuite {
     // String <: B and A (here Int) <: B
     // The first common type between String and Int is Any, corresponding to Object in Java
 
-    // There is nothing to do for this example to actually work, the compiler does the jobs.
+    // There is nothing to do for this example to actually work, the compiler does the job.
 
   }
 
