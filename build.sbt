@@ -19,13 +19,13 @@ showSuccess := false
 
 offline := true
 
-libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value
-
-libraryDependencies += "org.scala-lang" % "scala-compiler" % scalaVersion.value
-
-libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.6"
-
-libraryDependencies += "com.twitter.finatra" %% "finatra-http" % "2.1.5"
+libraryDependencies ++= List("org.scala-lang" % "scala-reflect" % scalaVersion.value,
+  "org.scala-lang" % "scala-compiler" % scalaVersion.value,
+  "org.scalatest" %% "scalatest" % "2.2.6",
+  "org.apache.spark" %% "spark-core" % "1.6.1",
+  "com.twitter.finatra" %% "finatra-http" % "2.1.5" exclude("org.slf4j","log4j-over-slf4j"),
+  "com.twitter" %% "scalding" % "0.15.0"
+)
 
 addCommandAlias("part1_1", "~ test-only part1_1")
 
