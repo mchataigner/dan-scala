@@ -19,13 +19,14 @@ showSuccess := false
 
 offline := true
 
-libraryDependencies += "org.scala-lang" % "scala-reflect" % scalaVersion.value
-
-libraryDependencies += "org.scala-lang" % "scala-compiler" % scalaVersion.value
-
-libraryDependencies += "org.scalatest" %% "scalatest" % "2.2.6"
-
-libraryDependencies += "com.twitter.finatra" %% "finatra-http" % "2.1.5"
+libraryDependencies ++= List("org.scala-lang" % "scala-reflect" % scalaVersion.value,
+  "org.scala-lang" % "scala-compiler" % scalaVersion.value,
+  "org.scalatest" %% "scalatest" % "2.2.6",
+  "org.apache.spark" %% "spark-core" % "1.6.1",
+  "org.apache.spark" %% "spark-sql" % "1.6.1",
+  "com.twitter.finatra" %% "finatra-http" % "2.1.5" exclude("org.slf4j","log4j-over-slf4j"),
+  "com.twitter" %% "scalding" % "0.15.0"
+)
 
 addCommandAlias("part1_1", "~ test-only part1_1")
 
@@ -36,6 +37,8 @@ addCommandAlias("part2", "~ test-only part2")
 addCommandAlias("go", "~ test-only HandsOnScala")
 
 addCommandAlias("server", "test:runMain stock.StockServer -http.port=:8080 -local.doc.root=./src/test/scala/part3")
+
+addCommandAlias("spark", "~ test-only sparkintro")
 
 fork in (Test, run) := true
 
