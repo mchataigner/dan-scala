@@ -47,7 +47,10 @@ object Utils {
     (bid, display, click)
   }
 
-  lazy val (bidsList, displaysList, clicksList) = (1 to 100).map{ _ => gen}.unzip3
+  lazy val (bidsList, displaysList, clicksList) = {
+    val (bl,dlOpt,clOpt) = (1 to 100).map{ _ => gen}.unzip3
+    (bl, dlOpt.flatten, clOpt.flatten)
+  }
 }
 
 class Intro extends HandsOnSuite with BeforeAndAfter {
@@ -97,8 +100,8 @@ class Intro extends HandsOnSuite with BeforeAndAfter {
   exercice("implement a join") {
     import Utils._
     val bids: RDD[Bid] = sc.parallelize(bidsList)
-    val displays: RDD[Display] = sc.parallelize(displaysList.flatten)
-    val clicks: RDD[Click] = sc.parallelize(clicksList.flatten)
+    val displays: RDD[Display] = sc.parallelize(displaysList)
+    val clicks: RDD[Click] = sc.parallelize(clicksList)
 
     innerJoin(bids, displays, clicks).collect should have size bidsList.size
   }
@@ -108,8 +111,8 @@ class Intro extends HandsOnSuite with BeforeAndAfter {
     import Utils._
 
     val bids = sc.parallelize[Bid](bidsList).toDF
-    val displays = sc.parallelize[Display](displaysList.flatten).toDF
-    val clicks = sc.parallelize[Click](clicksList.flatten).toDF
+    val displays = sc.parallelize[Display](displaysList).toDF
+    val clicks = sc.parallelize[Click](clicksList).toDF
 
     bids.registerTempTable("bids")
     displays.registerTempTable("displays")

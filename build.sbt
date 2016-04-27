@@ -2,7 +2,9 @@ scalaVersion := "2.11.7"
 
 resolvers ++= Seq(
   Resolver.sonatypeRepo("releases"),
-  "Twitter Maven" at "https://maven.twttr.com"
+  "Twitter Maven" at "https://maven.twttr.com",
+  "ConJars" at "http://conjars.org/repo",
+  "CloJars" at "http://clojars.org/repo"
 )
 
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-Xlog-free-types", "-Xlog-free-terms")
@@ -25,7 +27,10 @@ libraryDependencies ++= List("org.scala-lang" % "scala-reflect" % scalaVersion.v
   "org.apache.spark" %% "spark-core" % "1.6.1",
   "org.apache.spark" %% "spark-sql" % "1.6.1",
   "com.twitter.finatra" %% "finatra-http" % "2.1.5" exclude("org.slf4j","log4j-over-slf4j"),
-  "com.twitter" %% "scalding" % "0.15.0"
+  "cascading.kryo" % "cascading.kryo" % "0.4.7",
+  "com.twitter" %% "scalding-commons" % "0.15.0",
+  "com.twitter" %% "scalding-core" % "0.15.0",
+  "com.twitter" %% "scalding-args" % "0.15.0"
 )
 
 addCommandAlias("part1_1", "~ test-only part1_1")
