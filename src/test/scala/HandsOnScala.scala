@@ -57,3 +57,9 @@ class sparkintro extends HandsOn {
     new sparkintro.Intro
   )
 }
+
+class scaldingintro extends HandsOn {
+  override def nestedSuites = Vector(
+    new scaldingintro.Intro
+  )
+}
