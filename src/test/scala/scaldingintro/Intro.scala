@@ -106,21 +106,20 @@ class ScaldingJoin(args: com.twitter.scalding.Args) extends Job(args) {
   val output = TypedSequenceFile[(Bid, Display, Click)](args("output"))
 
   // The flow transformation consists of function from TypedPipe to TypedPipe.
-  // And finally wirering to a sink with the wriflattente method.
+  // And finally wirering to a sink with the write method.
   Utils.innerJoin(bids, displays, clicks).write(output)
 }
 
 
 
 
-class Intro extends FunSuite with BeforeAndAfter with ShouldMatchers{
+class Intro extends HandsOnSuite with BeforeAndAfter with ShouldMatchers{
   import Utils.{Bid, Display, Click}
 
   val lorem: Seq[String] = scala.io.Source.fromFile("lorem.txt").getLines().toSeq
 
 
-  test("toto") {
-    //  exercice("you can test a job easily by mocking source and validating output") {
+  exercice("you can test a job easily by mocking source and validating output") {
     JobTest.apply[ScaldingWordCount]
       .arg("source", "/user/source")
       .arg("output1", "/user/output1")
@@ -147,24 +146,21 @@ class Intro extends FunSuite with BeforeAndAfter with ShouldMatchers{
       })
       .run
       .finish
-    //  }
   }
 
-  test("titi") {
-    //  exercice("implement a join") {
+  exercice("implement a join") {
     JobTest.apply[ScaldingJoin]
       .arg("bids", "/user/bids")
       .arg("displays", "/user/displays")
       .arg("clicks", "/user/clicks")
       .arg("output", "/user/output")
       .source[Bid](TypedSequenceFile[Bid]("/user/bids"), Utils.bidsList)(TupleSetter.singleSetter[Bid])
-      .source[Display](TypedSequenceFile[Display]("/user/displays"), Utils.displaysList.flatten)(TupleSetter.singleSetter[Display])
+      .source[Display](TypedSequenceFile[Display]("/user/displays"), Utils.displaysList)(TupleSetter.singleSetter[Display])
       .source[Click](TypedSequenceFile[Click]("/user/clicks"), Utils.clicksList)(TupleSetter.singleSetter[Click])
       .sink[(Bid, Display, Click)](TypedSequenceFile[(Bid, Display, Click)]("/user/output")) { output: scala.collection.mutable.Buffer[(Bid, Display, Click)] =>
         output.toList should have size Utils.clicksList.size
       }(TupleConverter.singleConverter[(Bid, Display, Click)])
       .run
       .finish
-    //  }
   }
 }
