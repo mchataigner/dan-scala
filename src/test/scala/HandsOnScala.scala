@@ -51,3 +51,9 @@ class part2 extends HandsOn {
     new e3_future
   )
 }
+
+class sparkintro extends HandsOn {
+  override def nestedSuites = Vector(
+    new sparkintro.Intro
+  )
+}
