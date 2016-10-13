@@ -15,6 +15,7 @@ import scala.util.Random
 object Utils {
   def createSparkContext = {
     val conf = new SparkConf().setAppName("Simple Application").setMaster("local")
+      .set("spark.ui.port", "4040")
     new SparkContext(conf)
   }
 
