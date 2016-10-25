@@ -73,7 +73,7 @@ class e4_lists extends HandsOnSuite {
     // keeps all multiples of 3
     a.filter {v => v % 3 == 0} should equal(__)
 
-    // keeps all multiples of 5
+    // keeps all numbers that are not multiples of 5
     val c = List(1, 2, 5, 8, 9)
     val b = c.filterNot(v => v % 5==0)
     c should equal(List(1, 2, 5, 8, 9)) // Lists are immutable by default
