@@ -2,7 +2,7 @@ package part_4_advanced_collections
 
 import support.HandsOnSuite
 
-class e12_stream extends HandsOnSuite {
+class e14_stream extends HandsOnSuite {
 
   sealed trait Stream[+A] {
 
