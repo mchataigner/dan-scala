@@ -1,4 +1,4 @@
-package part1_2
+package part_2_collections
 
 
 import support.HandsOnSuite

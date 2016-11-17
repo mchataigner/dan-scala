@@ -1,4 +1,4 @@
-package part1_1
+package part_1_basic
 
 import support.HandsOnSuite
 
