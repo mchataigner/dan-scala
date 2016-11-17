@@ -141,9 +141,9 @@ class e9_extractors_and_pattern_matching extends HandsOnSuite {
 
 
   exercice("Lists have several pattern matching") {
-    val s = Seq("a","b")
+    val s = Seq("a","b","c")
     val actual = s match {
-      case Seq("a","b") => "ok"
+      case Seq("a","b","c") => "ok"
       case _ => "DEFAULT"
     }
 
@@ -151,7 +151,7 @@ class e9_extractors_and_pattern_matching extends HandsOnSuite {
 
     val consActual = s match {
       case "a"::Nil => "ko"
-      case "a"::"b"::Nil => "ok"
+      case "a"::"b"::"c"::Nil => "ok"
       case _ => "DEFAULT"
     }
 
