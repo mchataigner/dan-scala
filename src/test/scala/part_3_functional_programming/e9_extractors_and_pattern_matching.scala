@@ -1,4 +1,4 @@
-package part1_2
+package part_3_functional_programming
 
 import support.HandsOnSuite
 

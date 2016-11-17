@@ -1,4 +1,4 @@
-package part2
+package part_3_functional_programming
 
 import support.HandsOnSuite
 
@@ -12,7 +12,7 @@ import support.HandsOnSuite
  *
  * API docs are here: http://www.scala-lang.org/api/current/
  */
-class e2_fp extends HandsOnSuite {
+class e10_fp extends HandsOnSuite {
 
   exercice("not quite lisp") {
 

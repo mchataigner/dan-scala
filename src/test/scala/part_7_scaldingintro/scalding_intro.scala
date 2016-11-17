@@ -1,4 +1,4 @@
-package scaldingintro
+package part_7_scaldingintro
 
 import java.util.UUID
 

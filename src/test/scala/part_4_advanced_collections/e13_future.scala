@@ -1,10 +1,10 @@
-package part2
+package part_4_advanced_collections
 
 import support.HandsOnSuite
 
-import scala.util._
-import scala.language.postfixOps
 import scala.concurrent.duration._
+import scala.language.postfixOps
+import scala.util._
 
 /**
  * Futures provide a way to reason about asynchronous and parallel
@@ -13,7 +13,7 @@ import scala.concurrent.duration._
  * applying function on it. All the computation are lazy and will
  * be executed when the value is actually available.
  */
-class e3_future extends HandsOnSuite {
+class e13_future extends HandsOnSuite {
 
   // Future is part of the Scala standard API.
   import scala.concurrent._

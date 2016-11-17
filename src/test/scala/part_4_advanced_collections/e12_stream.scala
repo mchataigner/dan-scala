@@ -1,8 +1,8 @@
-package part2
+package part_4_advanced_collections
 
 import support.HandsOnSuite
 
-class e1_bonus_stream extends HandsOnSuite {
+class e12_stream extends HandsOnSuite {
 
   sealed trait Stream[+A] {
 

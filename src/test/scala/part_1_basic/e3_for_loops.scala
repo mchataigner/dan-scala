@@ -1,4 +1,4 @@
-package part1_1
+package part_1_basic
 
 import support.HandsOnSuite
 
@@ -20,7 +20,7 @@ class e3_for_loops extends HandsOnSuite {
       sum += i
     }
 
-    sum should equal(__)
+    sum should equal(45)
   }
 
   exercice("adding some logic") {
@@ -33,7 +33,7 @@ class e3_for_loops extends HandsOnSuite {
       }
     }
 
-    sum should equal(__)
+    sum should equal(20)
   }
 
   //for comprehensions

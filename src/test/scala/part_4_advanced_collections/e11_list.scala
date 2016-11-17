@@ -1,10 +1,9 @@
-package part2
-
+package part_4_advanced_collections
 
 import support.HandsOnSuite
 
 
-class e0_list extends HandsOnSuite {
+class e11_list extends HandsOnSuite {
 
   /*
   * We are going to define a list using recursions, as a linked list
