@@ -13,7 +13,7 @@ import scala.util._
  * applying function on it. All the computation are lazy and will
  * be executed when the value is actually available.
  */
-class e13_future extends HandsOnSuite {
+class e15_future extends HandsOnSuite {
 
   // Future is part of the Scala standard API.
   import scala.concurrent._

@@ -53,9 +53,11 @@ class part_3_functional_programming extends HandsOn {
 
 class part_4_advanced_collections extends HandsOn {
   override def nestedSuites = Vector(
-    new e11_list,
-    new e12_stream,
-    new e13_future
+    new e11_implicits,
+    new e12_typeclasses,
+    new e13_list,
+    new e14_stream,
+    new e15_future
   )
 }
 
