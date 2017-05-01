@@ -20,7 +20,7 @@ class e3_for_loops extends HandsOnSuite {
       sum += i
     }
 
-    sum should equal(45)
+    sum should equal(__)
   }
 
   exercice("adding some logic") {
@@ -33,7 +33,7 @@ class e3_for_loops extends HandsOnSuite {
       }
     }
 
-    sum should equal(20)
+    sum should equal(__)
   }
 
   //for comprehensions
@@ -55,7 +55,7 @@ class e3_for_loops extends HandsOnSuite {
     val aList =
       for {
         i <- someNumbers
-        if ((i % 2) == 0)
+        if (i % 2) == 0
       }
       yield i
 
