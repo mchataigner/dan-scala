@@ -47,12 +47,16 @@ class ReportToTheStopper(other: Reporter) extends Reporter {
     CustomStopper.testFailed
   }
 
+  val wasNotEqualTo = " was not equal to "
+
   def sendFail(evt: Event, e:MyException, suite:String, test:String) = {
+    val i = e.getMessage.indexOf(wasNotEqualTo)
+    val mess = if (i >= 0) Some(e.getMessage.substring(i + wasNotEqualTo.length) + " was not the correct answer") else Some(e.getMessage)
     sendInfo(evt, headerFail
       , suite
       , test
       , e.fileNameAndLineNumber
-      , Option(e.getMessage)
+      , mess
       , e.context
       , footerFail
     )
