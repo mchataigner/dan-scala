@@ -1,6 +1,7 @@
 scalaVersion := "2.11.8"
 
 resolvers ++= Seq(
+  Resolver.file("Local", file(Path.userHome.absolutePath) / "sbt" / "repository")(Resolver.ivyStylePatterns),
   Resolver.sonatypeRepo("releases"),
   "Twitter Maven" at "https://maven.twttr.com",
   "ConJars" at "http://conjars.org/repo",
