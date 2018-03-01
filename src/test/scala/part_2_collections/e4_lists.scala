@@ -4,26 +4,26 @@ package part_2_collections
 import support.HandsOnSuite
 
 
-  /**
-  *   Let's move on to lists...
-  *
-  *   Starting point of scala collections is trait Iterable.
-  *   Higher order function (map, filter, foreach...) that we will see next
-  *   can be used on classes of Collection API.
-  *   Collections are immutable by default, however it is possible to use their mutable form.
-  *
-  *   Actually Scala promote to use immutability (Scala has been designed in care of thread safety)
-  *
-  *   A List containing elements x1,…,xn is printed List(x1, … , xn).
-  *
-  *   List class consists of a composition of two case classes: `Nil` (empty list) and `::` (cons)
-  *   x::xs represent a list with the element x followed by the list xs
-  *   List is a recursive structure and element types must be the same in the whole list.
-  *
-  *   Lists have useful functions: isEmpty, filter, head, tail...
-  *
-  *   This can help: http://www.scala-lang.org/api/current/index.html#scala.collection.immutable.List
-  */
+/**
+*   Let's move on to lists...
+*
+*   Starting point of scala collections is trait Iterable.
+*   Higher order function (map, filter, foreach...) that we will see next
+*   can be used on classes of Collection API.
+*   Collections are immutable by default, however it is possible to use their mutable form.
+*
+*   Actually Scala promote to use immutability (Scala has been designed in care of thread safety)
+*
+*   A List containing elements x1,...,xn is printed List(x1, ..., xn).
+*
+*   List class consists of a composition of two case classes: `Nil` (empty list) and `::` (cons)
+*   x::xs represent a list with the element x followed by the list xs
+*   List is a recursive structure and element types must be the same in the whole list.
+*
+*   Lists have useful functions: isEmpty, filter, head, tail...
+*
+*   This can help: http://www.scala-lang.org/api/current/index.html#scala.collection.immutable.List
+*/
 
 class e4_lists extends HandsOnSuite {
 

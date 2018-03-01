@@ -3,7 +3,7 @@ package part_3_functional_programming
 import support.HandsOnSuite
 
 /**
-* Let's move on extractors and pattern matching
+* Let's move on to extractors and pattern matching
 */
 
 class e9_extractors_and_pattern_matching extends HandsOnSuite {
@@ -35,11 +35,11 @@ class e9_extractors_and_pattern_matching extends HandsOnSuite {
   exercice("Extractors can have multiple return values") {
     class Email(val value:String, val spamRatio:Integer)
     object Email {
-      def unapply(email:Email): Option[(String,Integer)] = Option((email.value,email.spamRatio))
+      def unapply(email:Email): Option[(String, Integer)] = Option((email.value, email.spamRatio))
     }
 
-    val email = new Email("foo@bar.com",5)
-    val Email(extractedString,extractedRatio) = email
+    val email = new Email("foo@bar.com", 5)
+    val Email(extractedString, extractedRatio) = email
 
     (extractedRatio) should be(__)
     (extractedString) should be(__)
@@ -111,15 +111,15 @@ class e9_extractors_and_pattern_matching extends HandsOnSuite {
 
 
   exercice("You can use pattern matching with case classes to capture inner values") {
-    case class A(/* compiler add `val` here */ a:String
-               , /* compiler add `val` here */ b:String)
+    case class A(/* compiler adds `val` here */ a:String,
+                 /* compiler adds `val` here */ b:String)
 
-    val a:A = /* We can do A(.., ...) instead of new A(..., ...)
-       because A's companion object computed by the compiler define A$.apply(..., ...) */
+    val a:A = /* We can do A(..., ...) instead of new A(..., ...)
+       because A's companion object computed by the compiler defines A$.apply(..., ...) */
               A(a="string", b="B")
 
     val actual = a match {
-      case A(a,b) => a+b
+      case A(a, b) => a + b
       case _ => "DEFAULT"
     }
 
@@ -131,7 +131,7 @@ class e9_extractors_and_pattern_matching extends HandsOnSuite {
     val a:A = new A(a="string", b="B")
 
     val actual = a match {
-      case A(a,_) => a
+      case A(a, _) => a
       case _ => "DEFAULT"
     }
 
@@ -141,9 +141,9 @@ class e9_extractors_and_pattern_matching extends HandsOnSuite {
 
 
   exercice("Lists have several pattern matching") {
-    val s = Seq("a","b","c")
+    val s = Seq("a", "b", "c")
     val actual = s match {
-      case Seq("a","b","c") => "ok"
+      case Seq("a", "b", "c") => "ok"
       case _ => "DEFAULT"
     }
 

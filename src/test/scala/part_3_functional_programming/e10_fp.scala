@@ -19,7 +19,7 @@ class e10_fp extends HandsOnSuite {
     // You have a meeting in a large apartment building, but the directions you got
     // are a little confusing:
     //
-    // You start on the ground floor (floor 0) and then follows the instructions one
+    // You start on the ground floor (floor 0) and then follow the instructions one
     // character at a time.
     //
     // An opening parenthesis, `(`, means you should go up one floor, and a closing

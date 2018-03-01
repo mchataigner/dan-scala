@@ -13,7 +13,7 @@ class e3_for_loops extends HandsOnSuite {
   exercice("let's write a for loop") {
     //0, 1, 2, 3, 4, 5, 6, 7, 8, 9
     val someNumbers = Range(0, 10)
-    // you can also use 'until' et 'to' => 0 until 10 == Range(0,10) == 0 to 9
+    // you can also use 'until' and 'to' => 0 until 10 == Range(0,10) == 0 to 9
 
     var sum = 0
     for (i <- someNumbers) {
@@ -36,7 +36,7 @@ class e3_for_loops extends HandsOnSuite {
     sum should equal(__)
   }
 
-  //for comprehensions
+  // for comprehensions
 
   /**
   * Scala offers a lightweight notation for expressing sequence comprehensions.
@@ -90,7 +90,7 @@ class e3_for_loops extends HandsOnSuite {
   *     this.y = y;
   *   }
   *
-  * ... on met pas tout...
+  * ... [methods skipped] ...
   *
   * }
   *
@@ -101,7 +101,7 @@ class e3_for_loops extends HandsOnSuite {
   *      coordinates.add(new Tuple(x, y));
   *   }
   * }
-  * ... blablabla
+  * ... [yada yada yada] ...
   *
   */
 }
