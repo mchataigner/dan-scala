@@ -34,19 +34,19 @@ libraryDependencies ++= List("org.scala-lang" % "scala-reflect" % scalaVersion.v
   "com.twitter" %% "scalding-args" % "0.16.0"
 )
 
-addCommandAlias("part1", "~ test-only part_1_basic")
+addCommandAlias("part1", "~ testOnly part_1_basic")
 
-addCommandAlias("part2", "~ test-only part_2_collections")
+addCommandAlias("part2", "~ testOnly part_2_collections")
 
-addCommandAlias("part3", "~ test-only part_3_functional_programming")
+addCommandAlias("part3", "~ testOnly part_3_functional_programming")
 
-addCommandAlias("part4", "~ test-only part_4_advanced_collections")
+addCommandAlias("part4", "~ testOnly part_4_advanced_collections")
 
-addCommandAlias("part6", "~ test-only part_6_sparkintro")
+addCommandAlias("part6", "~ testOnly part_6_sparkintro")
 
-addCommandAlias("part7", "~ test-only part_7_scaldingintro")
+addCommandAlias("part7", "~ testOnly part_7_scaldingintro")
 
-addCommandAlias("go", "~ test-only HandsOnScala")
+addCommandAlias("go", "~ testOnly HandsOnScala")
 
 addCommandAlias("server", "test:runMain stock.StockServer -http.port=:8080 -local.doc.root=./src/test/scala/part_6_http")
 
