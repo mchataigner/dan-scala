@@ -15,9 +15,10 @@ import support.HandsOnSuite
 *
 *           def addition(a: Int, b: Int): Int = a + b
 *
-*     - return is not required since in Scala the last expression of a block is return by default !
+*     - return is not required since in Scala the last expression of a block is returned by default !
 *
 */
+
 class e8_higher_order_functions extends HandsOnSuite {
 
   /**
@@ -97,7 +98,7 @@ class e8_higher_order_functions extends HandsOnSuite {
   exercice("Currying is a technique transforming a function with multiple parameters into a function with one parameter") {
     def multiply(x: Int, y: Int) = x * y
     // watchout '_'
-    // it indicates that the compiler should not apply the function but referencing it
+    // it indicates that the compiler should not apply the function but reference it
     val multiplyCurried = (multiply _).curried
     multiply(4, 5) should be(__)
     multiplyCurried(4)(5) should be(__)
@@ -113,7 +114,7 @@ class e8_higher_order_functions extends HandsOnSuite {
     customFilter(onlyEven)(xs) should be(__)
 
     // Watch out '_'
-    // it indicates that the compiler should not apply the function but referencing it
+    // it indicates that the compiler should not apply the function but reference it
     val onlyEvenFilter = customFilter(onlyEven) _
     onlyEvenFilter(xs) should be(__)
   }

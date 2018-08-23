@@ -2,18 +2,19 @@ package part_4_advanced_collections
 
 import support.HandsOnSuite
 
+/**
+*   Implicit in Scala is a way to do dependency injection based on types.
+*   It occurs in the last method and function parameter block.
+*
+*   When you call a function with implicit parameter, either you pass it explicitely,
+*   or the compiler will take one object from the current implicit scope with a matching
+*   type signature.
+*
+*   Implicit values reside in a scope called implicit scope.
+*   It holds all instances with their types with modifier `implicit`.
+*/
+
 class e11_implicits extends HandsOnSuite {
-  /*
-  Implicit in Scala is a way to do dependency injection based on types.
-  It occurs in the last method and function parameter block.
-
-  When you call a function with implicit parameter, either you pass it explicitely,
-  or the compiler will take one object from the current implicit scope with a matching
-  type signature.
-
-  Implicit values reside in a scope called implicit scope.
-  It holds all instances with their types with modifier `implicit`.
-  */
 
   def plus(i: Int)(implicit j: Int): Int = i + j
 
@@ -57,7 +58,7 @@ class e11_implicits extends HandsOnSuite {
     implicit val mode = Local
     doStuff("mathieu") should be (__)
 
-    // doMoreStuff("mathieu") should be (__)
+    // doMoreStuff("mathieu", 28) should be (__)
   }
 
   exercice("I can import implicit value in local scope") {

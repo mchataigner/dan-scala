@@ -2,31 +2,32 @@ package part_4_advanced_collections
 
 import support.HandsOnSuite
 
-class e12_typeclasses extends HandsOnSuite{
-  /*
-  Type classes are kind of ad-hoc polymorphysm.
-  It can extends behavior of some class without inheritance.
-  It enables implementing new behavior without loose coupling.
+/**
+* Type classes are kind of ad-hoc polymorphysm.
+* It can extends behavior of some class without inheritance.
+* It enables implementing new behavior without loose coupling.
+*
+* Implicit scopes are a bit more than just local.
+*
+* There are multiple levels of implicit:
+*  - local scope: local implicit definition or implicit parameters function definition
+*  - companion object of implicit type or companion object of generic parameter of implicit type
+*
+* If the compiler could not find value in implicit scope matching expected type, it will throw
+* an error and abort the compilation.
+*
+* If the compiler finds more than one value in implicit scope matching expected type, it will throw
+* an error and abort the compilation except if one implicit is more specific than the other:
+* List[Int] is more specific than List[T], so if we are looking for an implicit List[Int] and we have List[Int] and List[T]
+* in scope, it will take the List[Int].
+*
+* For example, I have a class Monoid[T] which has a generic type T,
+* if I am looking for an implicit value of type Monoid[T], it will look
+* in local scope *and* companion object of Monoid if present *and*
+* companion object of type T if present.
+*/
 
-  Implicit scopes are a bit more than just local.
-
-  There are multiple levels of implicit:
-   - local scope: local implicit definition or implicit parameters function definition
-   - companion object of implicit type or companion object of generic parameter of implicit type
-
-  If the compiler could not find value in implicit scope matching expected type, it will throw
-  an error and abort the compilation.
-
-  If the compiler finds more than one value in implicit scope matching expected type, it will throw
-  an error and abort the compilation except if one implicit is more specific than the other:
-  List[Int] is more specific than List[T], so if we are looking for an implicit List[Int] and we have List[Int] and List[T]
-  in scope, it will take the List[Int].
-
-  For example, I have a class Monoid[T] which has a generic type T,
-  if I am looking for an implicit value of type Monoid[T], it will look
-  in local scope *and* companion object of Monoid if present *and*
-  companion object of type T if present.
-  */
+class e12_typeclasses extends HandsOnSuite {
 
   /**
     * Monoid is an abstraction that takes 2 elements of same type T and combine them
